@@ -1,0 +1,20 @@
+flat_core.Rmd:
+  path: dev/flat_core.Rmd
+  state: active
+  R:
+  - R/len_uniq.R
+  - R/not_in.R
+  - R/sort_uniq.R
+  tests:
+  - tests/testthat/test-sort_uniq.R
+  - tests/testthat/test-len_uniq.R
+  - tests/testthat/test-not_in.R
+  vignettes: vignettes/core-functions.Rmd
+  inflate:
+    flat_file: dev/flat_core.Rmd
+    vignette_name: Core Functions
+    open_vignette: true
+    check: true
+    document: true
+    overwrite: ask
+    clean: ask

@@ -1,5 +1,5 @@
 ---
-title: "flat_core.Rmd empty"
+title: "flat_core.Rmd Core Functions"
 output: html_document
 editor_options: 
   chunk_output_type: console
@@ -18,33 +18,131 @@ library(testthat)
 pkgload::load_all(export_all = FALSE)
 ```
 
-# core
+# sort_uniq
 
-```{r function-core}
-#' core Title
+Here are a few functions that I am creating as shorthands for some of commonly used
+expressions/combined functions I keep coming back to. The idea is to read this package
+and its functions into any random project I'm working on so I can have these
+shorthands, handy (even if they don't seem very R-like).
+
+```{r function-sort_uniq}
+#' sort_uniq
+#' 
+#' Description
+#' 
+#' A Shorthand for unique() %>% sort()
 #'
-#' @return 1
+#' @param vec A vector that can be reasonably sorted
+#' @return A sorted vector of unique values in the vector
 #' @export
 #'
 #' @examples
-core <- function() {
-  1
+sort_uniq <- function(vec) {
+  sort(unique(vec))
 }
 ```
 
-```{r examples-core}
-core()
+```{r examples-sort_uniq}
+vec <- sample(1:10, size = 20, replace=TRUE)
+
+vec
+
+sort_uniq(vec)
 ```
 
-```{r tests-core}
-test_that("core works", {
-  expect_true(inherits(core, "function"))
+```{r tests-sort_uniq}
+test_that("sort_uniq only returns 10 numbers", {
+  expect_equal(
+    object = {
+      vec <- sample(1:10, size = 100, replace=TRUE)
+
+      sort_uniq(vec)
+    },
+
+    expected = 1:10
+  )
 })
 ```
 
+A funny thing I ended up realizing when trying to write a "simple test":
+
+There's a tiny probability that this could fail randomly and it wouldn't even be wrong! So the lesson here is don't write tests like mine.
+
+# len_uniq
+    
+```{r function-len_uniq}
+#' len_uniq
+#' 
+#' A short hand for unique() %>% length()
+#' 
+#' @param vec A vector with a various objects
+#' @return The number of unique objects in the vector
+#' @export
+#'
+#' @examples
+len_uniq <- function(vec) {
+  length(unique(vec))
+}
+```
+  
+```{r example-len_uniq}
+vec <- sample(1:10, size = 20, replace=TRUE)
+
+vec
+
+sort_uniq(vec)
+```
+  
+```{r tests-len_uniq}
+test_that("sort_uniq works", {
+  expect_equal(
+    object = {
+      vec <- sample(1:10, size = 100, replace=TRUE)
+
+      len_uniq(vec)
+    },
+
+    expected = 10
+  )
+})
+```
+  
+
+# not_in
+
+And finally, an actually personally irritating one of mine: NOT %in%. The fact that we can't
+put in a `!%in%` or `not %in%` like in Python is one example where I can
+actually say Python did it better than R here.
+
+```{r function-not_in}
+#' %!in%
+#' 
+#' An operator that negates the %in% operator
+#' 
+#' @param x the thing you want to not find in the table
+#' @param table the table you're searching through for this thing
+#' @return boolean
+#' 
+#' @export
+not_in <- function(x,y)!('%in%'(x,y))
+```
+  
+```{r example-not_in}
+not_in(1, 2:10)
+```
+  
+
+```{r tests-not_in}
+test_that("`%!in%` works", {
+  expect_true({
+    not_in(1, 2:10)
+  }) 
+})
+```
+  
 
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-fusen::inflate(flat_file = "dev/flat_core.Rmd", vignette_name = "Minimal")
+fusen::inflate(flat_file = "dev/flat_core.Rmd", vignette_name = "Core Functions")
 ```
