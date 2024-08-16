@@ -1,0 +1,13 @@
+Package: tinasheR
+Version: 0.0.0.9000
+Title: My Personal Package
+Description: A personal package of some go-to code shorthands and frequently used functions I have put together to speed up my development workflow.
+Authors@R: person(given = "Tinashe",
+       family = "Tapera",
+       role = c("aut", "cre"),
+       email = "tinashemtapera@gmail.com",
+       comment = c(ORCID = "0000-0000-0000-0000"))
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
