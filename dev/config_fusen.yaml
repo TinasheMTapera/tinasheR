@@ -3,8 +3,8 @@ flat_core.Rmd:
   state: active
   R:
   - R/len_uniq.R
-  - R/not_in.R
   - R/sort_uniq.R
+  - R/not_in.R
   tests:
   - tests/testthat/test-sort_uniq.R
   - tests/testthat/test-len_uniq.R

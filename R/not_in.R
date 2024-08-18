@@ -4,11 +4,7 @@
 #' 
 #' An operator that negates the %in% operator
 #' 
-#' @param x the thing you want to not find in the table
-#' @param table the table you're searching through for this thing
 #' @return boolean
 #' 
 #' @export
-#' @examples
-#' not_in(1, 2:10)
-not_in <- function(x,y)!('%in%'(x,y))
+`%!in%` <- Negate(`%in%`)

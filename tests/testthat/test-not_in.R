@@ -2,6 +2,6 @@
 
 test_that("`%!in%` works", {
   expect_true({
-    not_in(1, 2:10)
+    1 %!in% 2:10
   }) 
 })

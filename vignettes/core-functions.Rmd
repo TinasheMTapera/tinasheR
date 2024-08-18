@@ -68,7 +68,9 @@ put in a `!%in%` or `not %in%` like in Python is one example where I can
 actually say Python did it better than R here.
   
 ```{r example-not_in}
-not_in(1, 2:10)
+#' \dontrun{
+#'     not_in(1, 2:10)
+#' }
 ```
 
   
